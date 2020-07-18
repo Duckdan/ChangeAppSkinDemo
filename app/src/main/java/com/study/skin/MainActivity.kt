@@ -1,7 +1,9 @@
 package com.study.skin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +11,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    fun jumpActivity(view: View) = startActivity(Intent(this, SecondActivity::class.java))
 }
