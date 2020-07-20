@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import com.study.skinlib.utils.SkinThemeUtils
 import java.lang.Exception
 import java.lang.reflect.Constructor
 import java.util.*
@@ -27,10 +28,10 @@ class SkinLayoutInflaterFactory : LayoutInflater.Factory2, Observer {
      * 如果利用Factory2创建控件，那么就会通过该方法来创建
      */
     override fun onCreateView(
-            parent: View?,
-            name: String,
-            context: Context,
-            attrs: AttributeSet
+        parent: View?,
+        name: String,
+        context: Context,
+        attrs: AttributeSet
     ): View? {
         var view = createSDKView(name, context, attrs)
         if (view == null) {
@@ -47,9 +48,9 @@ class SkinLayoutInflaterFactory : LayoutInflater.Factory2, Observer {
     }
 
     fun createSDKView(
-            name: String,
-            context: Context,
-            attrs: AttributeSet
+        name: String,
+        context: Context,
+        attrs: AttributeSet
     ): View? {
         //如果包含，说明是自定义控件或者Google提供的扩展view
         if (-1 != name.indexOf(".")) {
@@ -60,7 +61,7 @@ class SkinLayoutInflaterFactory : LayoutInflater.Factory2, Observer {
         for (prefix in mClassPrefixList) {
             var view = createView(prefix + name, context, attrs)
             if (view != null) {
-                return null
+                return view
             }
         }
         return null
@@ -100,7 +101,8 @@ class SkinLayoutInflaterFactory : LayoutInflater.Factory2, Observer {
      * 观察者接受到被观察的改变通知调用该方法
      */
     override fun update(o: Observable?, arg: Any?) {
-
+        SkinThemeUtils.updateStatusBarColor(mActivity)
+        skinAttribute.applySkin()
     }
 
     companion object {
@@ -108,17 +110,17 @@ class SkinLayoutInflaterFactory : LayoutInflater.Factory2, Observer {
          * 控件的报名
          */
         val mClassPrefixList = arrayOf(
-                "android.widget.",
-                "android.webkit.",
-                "android.app.",
-                "android.view."
+            "android.widget.",
+            "android.webkit.",
+            "android.app.",
+            "android.view."
         )
 
         /**
          * 创建view的构造函数
          */
         val mConstructorSignature = arrayOf(
-                Context::class.java, AttributeSet::class.java
+            Context::class.java, AttributeSet::class.java
         )
 
         /**

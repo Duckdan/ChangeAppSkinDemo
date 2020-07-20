@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="main_bg">#c6c5ff</color>
+    <color name="second_bg">#f6cc5f</color>
 </resources>

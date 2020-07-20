@@ -29,7 +29,8 @@ class SkinAttribute {
      */
     fun look(view: View, attrs: AttributeSet) {
         var mSkinPars = arrayListOf<SkinPair>()
-        for (i in 0..attrs.attributeCount) {
+        //0<attrs.attributeCount
+        for (i in 0 until attrs.attributeCount) {
             //获取属性名
             val attributeName = attrs.getAttributeName(i)
             if (mAttributes.contains(attributeName)) {
