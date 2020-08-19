@@ -51,6 +51,7 @@ class ActivityLifecycleCallbacksImpl : Application.ActivityLifecycleCallbacks {
 
         //使用factory2 设置布局加载工程
         val skinLayoutInflaterFactory = SkinLayoutInflaterFactory(activity)
+        //内部也是通过反射来修改layoutInflater的值
         LayoutInflaterCompat.setFactory2(layoutInflater, skinLayoutInflaterFactory)
         mLayoutInflaterFactories[activity] = skinLayoutInflaterFactory
 
