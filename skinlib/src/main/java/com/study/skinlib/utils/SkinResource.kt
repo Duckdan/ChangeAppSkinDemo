@@ -38,8 +38,10 @@ class SkinResource {
         if (isDefaultSkin) {
             return resId
         }
+        //获取资源的名称和类型
         val resName = mAppResource.getResourceEntryName(resId)
         val resType = mAppResource.getResourceTypeName(resId)
+        //通过插件的Resources获取到插件中相同名称和类型的id
         return mSkinResources?.getIdentifier(resName, resType, mSkinPkgName) ?: 0
     }
 

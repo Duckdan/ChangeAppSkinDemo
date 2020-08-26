@@ -34,7 +34,7 @@ class SkinAttribute {
             //获取属性名
             val attributeName = attrs.getAttributeName(i)
             if (mAttributes.contains(attributeName)) {
-                //获取属性值
+                //获取属性值,宿主Apk的android:background="@color/main_bg"中@color/main_bg的引用值，例如@2130968629
                 val attributeValue = attrs.getAttributeValue(i)
                 //例如针对color的属性的属性值写死
                 if (attributeValue.startsWith("#")) {
